@@ -1,0 +1,28 @@
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    border: 0px solid orange;
+    height: 100vh;
+}
+
+.projlist {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+}
+
+.toolbar-div {
+}
+
+.router-div {
+    flex: 1 1 auto;
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}

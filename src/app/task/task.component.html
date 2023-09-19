@@ -1,0 +1,59 @@
+<mat-form-field>
+    <input type="text" placeholder="Project No." aria-label="Number" [(value)]="taskObj.projno" matInput [formControl]="projNoControl"
+    [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="projNo($event.option.value)">
+        <mat-option *ngFor="let projObj of filteredProjects1 | async" [value]="projObj.project.project_no">
+            {{projObj.project.project_no}}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+<mat-form-field>
+    <input type="text" placeholder="Project Name" aria-label="Number" [(value)]="taskObj.projname" matInput [formControl]="projNameControl"
+        [matAutocomplete]="auto2">
+        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="projName($event.option.value)">
+            <mat-option *ngFor="let projObj of filteredProjects2 | async" [value]="projObj.name">
+                {{projObj.name}}
+            </mat-option>
+        </mat-autocomplete>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput type="text" value={{taskObj.task.description}} (change)="description($event.target.value)"
+        style="min-width: 200px; min-height: 50px;"></textarea>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Assigned</mat-label>
+    <mat-select style="width: 200px" [(value)]="taskObj.name" (selectionChange)="assigned($event)">
+        <mat-option *ngFor="let personObj of personsObj" [value]="personObj.name">
+            {{personObj.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Estimated Hours</mat-label>
+    <input matInput type="text" value={{taskObj.task.est_hours}} (change)="hours($event.target.value)">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Max Hours / Day</mat-label>
+    <input matInput type="text" value={{taskObj.task.max_hour_day}} (change)="maxHours($event.target.value)">
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="startpicker" (dateChange)="startDate($event.target.value)" [value]="startdate.value">
+    <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+    <mat-datepicker #startpicker></mat-datepicker>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endpicker" (dateChange)="endDate($event.target.value)" [value]="enddate.value">
+    <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+    <mat-datepicker #endpicker></mat-datepicker>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select style="width: 200px;" [(value)]="taskObj.task.priority" (selectionChange)="priority($event)">
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+            {{priority}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

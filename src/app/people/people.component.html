@@ -1,0 +1,175 @@
+<div class="container">
+    <div class="personinfo">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" value={{person.first_name}}>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" value={{person.last_name}}>
+        </mat-form-field>
+        <button mat-icon-button (click)="pdfIt()">
+            <mat-icon>picture_as_pdf</mat-icon>
+        </button>
+    </div>
+
+    <!-- <button mat-button style="padding: 0px; min-width:40px" (click)="pdfIt($event.target.value)">
+    <mat-icon>picture_as_pdf</mat-icon>
+  </button> -->
+
+    <div #perscal class="personal_calendar" style="display: none;">
+        <mat-label>Calendar</mat-label>
+        <div class="calrow">
+            <div class="calcell">
+                <div #title1 class="title1">1</div>
+                <div #cell1 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title2 class="title1">2</div>
+                <div #cell2 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title3 class="title1">3</div>
+                <div #cell3 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title4 class="title1">4</div>
+                <div #cell4 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title5 class="title1">5</div>
+                <div #cell5 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title6 class="title1">6</div>
+                <div #cell6 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title7 class="title1">7</div>
+                <div #cell7 class="calcell2">
+                </div>
+            </div>
+        </div>
+        <div class="calrow">
+            <div class="calcell">
+                <div #title8 class="title1">8</div>
+                <div #cell8 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title9 class="title1">9</div>
+                <div #cell9 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title10 class="title1">10</div>
+                <div #cell10 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title11 class="title1">11</div>
+                <div #cell11 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title12 class="title1">12</div>
+                <div #cell12 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title13 class="title1">13</div>
+                <div #cell13 class="calcell2">
+                </div>
+            </div>
+            <div class="calcell">
+                <div #title14 class="title1">14</div>
+                <div #cell14 class="calcell2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container1">
+        <div>
+            <mat-label>Tasks</mat-label>
+            <table mat-table [dataSource]="taskdata" style="width: 100%;">
+                <ng-container matColumnDef="key">
+                    <th mat-header-cell *matHeaderCellDef style="padding-left: 0px; text-align: center;">Key</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-left: 12px; text-align: center;">
+                        <div style="width: 20px; height: 20px" style.background="{{row.color}}"></div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="project">
+                    <th mat-header-cell *matHeaderCellDef>Project</th>
+                    <td mat-cell *matCellDef="let row" style="width: 25%; padding-top: 6px; vertical-align: top;"> {{row.projno}} {{row.projname}} </td>
+                </ng-container>
+                <ng-container matColumnDef="descript">
+                    <th mat-header-cell *matHeaderCellDef>Description</th>
+                    <td mat-cell *matCellDef="let row" style="width: 30%; padding-top: 6px; vertical-align: top;"> {{row.task.description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="startdate">
+                    <th mat-header-cell *matHeaderCellDef>Start</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.startdate}} </td>
+                </ng-container>
+                <ng-container matColumnDef="enddate">
+                    <th mat-header-cell *matHeaderCellDef>End</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.enddate}} </td>
+                </ng-container>
+                <ng-container matColumnDef="daysout">
+                    <th mat-header-cell *matHeaderCellDef>Days Out</th>
+                    <td mat-cell *matCellDef="let row" style="width: 5%; padding-top: 6px; vertical-align: top;"> {{row.daysout}} </td>
+                </ng-container>
+                <ng-container matColumnDef="priority">
+                    <th mat-header-cell *matHeaderCellDef>Priority</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.task.priority}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="taskColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: taskColumns;" [routerLink]="['/task/' + row.task.key]"></tr>
+            </table>
+        </div>
+    </div>
+    <!-- <div class="container1">
+        <div>
+            <mat-label>Assignments</mat-label>
+            <table mat-table [dataSource]="assignmentdata" style="width: 100%;">
+                <ng-container matColumnDef="project">
+                    <th mat-header-cell *matHeaderCellDef>Project</th>
+                    <td mat-cell *matCellDef="let row" style="width: 25%; padding-top: 6px; vertical-align: top;">{{row.project}}</td>
+                </ng-container>
+                <ng-container matColumnDef="pm">
+                    <th mat-header-cell *matHeaderCellDef>PM</th>
+                    <td mat-cell *matCellDef="let row" style="width: 30%; padding-top: 6px; vertical-align: top;"> {{row.pm}} </td>
+                </ng-container>
+                <ng-container matColumnDef="pc">
+                    <th mat-header-cell *matHeaderCellDef>PC</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.pc}} </td>
+                </ng-container>
+                <ng-container matColumnDef="hvac">
+                    <th mat-header-cell *matHeaderCellDef>HVAC</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.hvac}} </td>
+                </ng-container>
+                <ng-container matColumnDef="elec">
+                    <th mat-header-cell *matHeaderCellDef>Elec</th>
+                    <td mat-cell *matCellDef="let row" style="width: 5%; padding-top: 6px; vertical-align: top;"> {{row.elec}} </td>
+                </ng-container>
+                <ng-container matColumnDef="plmb">
+                    <th mat-header-cell *matHeaderCellDef>Plmb</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.plmb}} </td>
+                </ng-container>
+                <ng-container matColumnDef="fire">
+                    <th mat-header-cell *matHeaderCellDef>Fire</th>
+                    <td mat-cell *matCellDef="let row" style="width: 10%; padding-top: 6px; vertical-align: top;"> {{row.fire}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="assignColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: assignColumns;"></tr>
+            </table>
+        </div>
+    </div> -->
+</div>

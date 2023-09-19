@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.container1 {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.box1 {
+    flex-grow: 1;
+    border: solid 1px black;
+}
+
+.box2 {
+    flex-grow: 1;
+    border: solid 1px black;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.mat-column-thenote {
+    width: 80%;
+}

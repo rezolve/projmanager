@@ -1,0 +1,21 @@
+:host {
+    display: flex;
+    flex: 1 1 auto;
+  }
+
+.container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+}
+
+.container1 {
+    flex: 1 1 auto;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.box2 {
+    flex-grow: 1;
+    border: solid 1px black;
+}

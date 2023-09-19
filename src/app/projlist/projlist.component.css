@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex: 1 1 auto;
+  }
+
+.container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+}
+
+.container1 {
+    flex: 1 1 auto;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.header1 {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: row;
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+  }

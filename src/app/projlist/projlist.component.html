@@ -1,0 +1,38 @@
+<div class="container">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Job Name" #input>
+    </mat-form-field>
+
+    <div class="container1">
+        <table mat-table [dataSource]="dataSource" matSort width="100%">
+            <ng-container matColumnDef="project_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Project No. </th>
+                <td mat-cell *matCellDef="let row"> {{row.project_no}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="project_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.project_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="client">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
+                <td mat-cell *matCellDef="let row"> {{row.client}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Summary </th>
+                <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/project/' + row.key]"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="2">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+    </div>
+</div>

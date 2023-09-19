@@ -1,0 +1,27 @@
+<mat-form-field>
+    <input type="text" placeholder="Project" aria-label="Number" [(value)]="noteObj.proj" matInput [formControl]="projControl"
+    [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="proj($event.option.value)">
+        <mat-option *ngFor="let projObj of filteredProjects | async" [value]="projObj.name" (change)="projNo($event)">
+            {{projObj.name}}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Note</mat-label>
+    <textarea matInput type="text" value={{noteObj.note.thenote}} (change)="theNote($event.target.value)"
+        style="min-width: 200px; min-height: 50px;"></textarea>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Created</mat-label>
+    <input matInput [matDatepicker]="endpicker" (dateChange)="createdDate($event.target.value)" [value]="createddate.value">
+    <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+    <mat-datepicker #endpicker></mat-datepicker>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Privacy</mat-label>
+    <mat-select style="width: 200px;" [compareWith]="compareIsprivate" [(ngModel)]="note.isprivate" (selectionChange)="privacy($event)">
+        <mat-option value="true">True</mat-option>
+        <mat-option value="false">False</mat-option>
+    </mat-select>
+</mat-form-field>
